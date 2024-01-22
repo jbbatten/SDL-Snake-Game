@@ -1,6 +1,6 @@
 #include <Screen.h>
 
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 #include <iostream>
 
 
@@ -11,24 +11,23 @@ Screen::Screen(int _screenWidth, int _screenHeight, int _gridSize)
 {
 
     // Initialize SDL. SDL_Init will return -1 if it fails.
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
     {
         std::cout << "Error initializing SDL: " << SDL_GetError() << std::endl;
     }
 
     // Create a window
     sdl_window = SDL_CreateWindow("SDL Window Example",
-                                  screenWidth,
+                                  screenWidth, 
                                   screenHeight,
-                                  screenWidth, screenHeight,
-                                  SDL_WINDOW_SHOWN);
+                                  SDL_WINDOW_BORDERLESS);
     if (sdl_window == nullptr)
     {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
     }
 
     // Create renderer
-    sdl_renderer = SDL_CreateRenderer(sdl_window, 2, SDL_RENDERER_ACCELERATED);
+    sdl_renderer = SDL_CreateRenderer(sdl_window, NULL, SDL_RENDERER_ACCELERATED);
 
     if (nullptr == sdl_renderer)
     {
@@ -60,18 +59,18 @@ void Screen::Render(SDL_Point const &food, Snake const &snake)
     SDL_SetRenderDrawColor(sdl_renderer, 10, 10, 10, 0xFF);
     for (int i = 0; i < screenWidth; i += gridSize)
     {
-        SDL_RenderDrawLine(sdl_renderer, i, 0, i, screenHeight);
+        SDL_RenderLine(sdl_renderer, i, 0, i, screenHeight);
     }
 
     for (int j = 0; j < screenHeight; j += gridSize)
     {
-        SDL_RenderDrawLine(sdl_renderer, 0, j, screenWidth, j);
+        SDL_RenderLine(sdl_renderer, 0, j, screenWidth, j);
     }
 
     // Draw Food
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
     // Set size of food
-    SDL_Rect foodBlock;
+    SDL_FRect foodBlock;
     foodBlock.w = gridSize;
     foodBlock.h = gridSize;
     foodBlock.x = food.x;
@@ -81,7 +80,7 @@ void Screen::Render(SDL_Point const &food, Snake const &snake)
     // Draw Snake
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     // Set size of Snake
-    SDL_Rect snakeBlock;
+    SDL_FRect snakeBlock;
 
     // Set snakeBlock to snake head.
     snakeBlock.w = gridSize;

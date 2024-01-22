@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 
 inline bool operator == (SDL_Point const &a, SDL_Point const &b)
 {

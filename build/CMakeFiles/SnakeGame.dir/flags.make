@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jamiebatten/Dev/SnakeGame/include -isystem /usr/include/SDL2
+CXX_INCLUDES = -I/home/jamiebatten/Dev/cpp/SnakeGame/include -I/home/jamiebatten/Dev/cpp/SnakeGame/lib/SDL/include -I/home/jamiebatten/Dev/cpp/SnakeGame/build/lib/SDL/include -I/home/jamiebatten/Dev/cpp/SnakeGame/lib/SDL/include/SDL3
 
-CXX_FLAGS = 
+CXX_FLAGS = -idirafter/home/jamiebatten/Dev/cpp/SnakeGame/lib/SDL/src/video/khronos
 

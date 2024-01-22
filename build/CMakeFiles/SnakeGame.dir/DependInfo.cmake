@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jamiebatten/Dev/SnakeGame/src/Screen.cpp" "CMakeFiles/SnakeGame.dir/src/Screen.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/Screen.cpp.o.d"
-  "/home/jamiebatten/Dev/SnakeGame/src/Snake.cpp" "CMakeFiles/SnakeGame.dir/src/Snake.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/Snake.cpp.o.d"
-  "/home/jamiebatten/Dev/SnakeGame/src/main.cpp" "CMakeFiles/SnakeGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/main.cpp.o.d"
+  "/home/jamiebatten/Dev/cpp/SnakeGame/src/Screen.cpp" "CMakeFiles/SnakeGame.dir/src/Screen.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/Screen.cpp.o.d"
+  "/home/jamiebatten/Dev/cpp/SnakeGame/src/Snake.cpp" "CMakeFiles/SnakeGame.dir/src/Snake.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/Snake.cpp.o.d"
+  "/home/jamiebatten/Dev/cpp/SnakeGame/src/main.cpp" "CMakeFiles/SnakeGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/SnakeGame.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

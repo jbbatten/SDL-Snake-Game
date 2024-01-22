@@ -1,10 +1,10 @@
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 #include <Screen.h>
 
 
-const int WINDOW_WIDTH = 200;
-const int WINDOW_HEIGHT = 200;
+const int WINDOW_WIDTH = 400;
+const int WINDOW_HEIGHT = 400;
 const int GRID_SIZE = 20;
 const int FPS = 10;
 const int TICKS_PER_FRAME = 1000 / FPS;
@@ -41,27 +41,27 @@ int main()
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
+            if (event.type == SDL_EVENT_QUIT || (event.type == SDL_EVENT_KEY_DOWN) && event.key.keysym.sym == SDLK_ESCAPE)
             {
                 quit = true;
             }
 
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP)
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.keysym.sym == SDLK_UP)
             {
                 snake.ChangeDirection(SnakeDirection::UP);
             };
 
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN)
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.keysym.sym == SDLK_DOWN)
             {
                 snake.ChangeDirection(SnakeDirection::DOWN);
             }
 
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.keysym.sym == SDLK_RIGHT)
             {
                 snake.ChangeDirection(SnakeDirection::RIGHT);
             }
 
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT)
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.keysym.sym == SDLK_LEFT)
             {
                 snake.ChangeDirection(SnakeDirection::LEFT);
             }

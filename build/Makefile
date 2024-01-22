@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jamiebatten/Dev/SnakeGame
+CMAKE_SOURCE_DIR = /home/jamiebatten/Dev/cpp/SnakeGame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jamiebatten/Dev/SnakeGame/build
+CMAKE_BINARY_DIR = /home/jamiebatten/Dev/cpp/SnakeGame/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiebatten/Dev/SnakeGame/build/CMakeFiles /home/jamiebatten/Dev/SnakeGame/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiebatten/Dev/cpp/SnakeGame/build/CMakeFiles /home/jamiebatten/Dev/cpp/SnakeGame/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiebatten/Dev/SnakeGame/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiebatten/Dev/cpp/SnakeGame/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,45 @@ SnakeGame: cmake_check_build_system
 SnakeGame/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/build
 .PHONY : SnakeGame/fast
+
+#=============================================================================
+# Target rules for targets named SDL3-shared
+
+# Build rule for target.
+SDL3-shared: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL3-shared
+.PHONY : SDL3-shared
+
+# fast build rule for target.
+SDL3-shared/fast:
+	$(MAKE) $(MAKESILENT) -f lib/SDL/CMakeFiles/SDL3-shared.dir/build.make lib/SDL/CMakeFiles/SDL3-shared.dir/build
+.PHONY : SDL3-shared/fast
+
+#=============================================================================
+# Target rules for targets named SDL3_test
+
+# Build rule for target.
+SDL3_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL3_test
+.PHONY : SDL3_test
+
+# fast build rule for target.
+SDL3_test/fast:
+	$(MAKE) $(MAKESILENT) -f lib/SDL/CMakeFiles/SDL3_test.dir/build.make lib/SDL/CMakeFiles/SDL3_test.dir/build
+.PHONY : SDL3_test/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f lib/SDL/CMakeFiles/uninstall.dir/build.make lib/SDL/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
 
 src/Screen.o: src/Screen.cpp.o
 .PHONY : src/Screen.o
@@ -209,6 +248,9 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... uninstall"
+	@echo "... SDL3-shared"
+	@echo "... SDL3_test"
 	@echo "... SnakeGame"
 	@echo "... src/Screen.o"
 	@echo "... src/Screen.i"

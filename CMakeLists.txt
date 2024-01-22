@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.24)
 
 project(SnakeGame)
 
 
-find_package(SDL2 REQUIRED)
+add_subdirectory("lib/SDL")
 
-include_directories(${SDL2_INCLUDE_DIRS} "include")
+include_directories("include" "lib/SDL/include")
 
 
 set(SOURCES 
@@ -16,4 +16,4 @@ set(SOURCES
 
 add_executable(SnakeGame ${SOURCES})
 
-target_link_libraries(SnakeGame ${SDL2_LIBRARIES})
+target_link_libraries(SnakeGame PRIVATE SDL3::SDL3)
