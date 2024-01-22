@@ -1,25 +1,21 @@
-#include <Screen.h>
-
-#include <SDL3/SDL.h>
+#include "Screen.h"
+#include "SDL3/SDL.h"
 #include <iostream>
 
-
-Screen::Screen(int _screenWidth, int _screenHeight, int _gridSize)
-    : screenWidth(_screenWidth),
-      screenHeight(_screenHeight),
-      gridSize(_gridSize)
+Screen::Screen(GameSettings &gameSettings)
+    : gameSettings(&gameSettings)
 {
 
     // Initialize SDL. SDL_Init will return -1 if it fails.
-    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
-    {
+    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
         std::cout << "Error initializing SDL: " << SDL_GetError() << std::endl;
     }
 
+
     // Create a window
     sdl_window = SDL_CreateWindow("SDL Window Example",
-                                  screenWidth, 
-                                  screenHeight,
+                                  gameSettings.WINDOW_WIDTH, 
+                                  gameSettings.WINDOW_HEIGHT,
                                   SDL_WINDOW_BORDERLESS);
     if (sdl_window == nullptr)
     {
@@ -46,10 +42,9 @@ Screen::~Screen()
     SDL_Quit();
 }
 
-void Screen::Render(SDL_Point const &food, Snake const &snake)
+void Screen::Render()
 {
-
-    // Set the draw color to red (R=255, G=0, B=0, A=255)
+    // Set the draw color to gray (R=255, G=0, B=0, A=255)
     SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
 
     // Clear the screen
@@ -57,50 +52,25 @@ void Screen::Render(SDL_Point const &food, Snake const &snake)
 
     // Draw the Grid
     SDL_SetRenderDrawColor(sdl_renderer, 10, 10, 10, 0xFF);
-    for (int i = 0; i < screenWidth; i += gridSize)
+    for (int i = 0; i < gameSettings->WINDOW_WIDTH; i += gameSettings->GRID_SIZE)
     {
-        SDL_RenderLine(sdl_renderer, i, 0, i, screenHeight);
+        SDL_RenderLine(sdl_renderer, i, 0, i, gameSettings->WINDOW_HEIGHT);
     }
 
-    for (int j = 0; j < screenHeight; j += gridSize)
+    for (int j = 0; j < gameSettings->WINDOW_HEIGHT; j += gameSettings->GRID_SIZE)
     {
-        SDL_RenderLine(sdl_renderer, 0, j, screenWidth, j);
+        SDL_RenderLine(sdl_renderer, 0, j, gameSettings->WINDOW_WIDTH, j);
     }
 
-    // Draw Food
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-    // Set size of food
-    SDL_FRect foodBlock;
-    foodBlock.w = gridSize;
-    foodBlock.h = gridSize;
-    foodBlock.x = food.x;
-    foodBlock.y = food.y;
-    SDL_RenderFillRect(sdl_renderer, &foodBlock);
+    // Workout position of new food.
+    SDL_Point food;
+    food.x = (rand() % gameSettings->TOTAL_AMOUNT_OF_CELLS_X) * gameSettings->GRID_SIZE;
+    food.y = (rand() % gameSettings->TOTAL_AMOUNT_OF_CELLS_Y) * gameSettings->GRID_SIZE;
 
-    // Draw Snake
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    // Set size of Snake
-    SDL_FRect snakeBlock;
 
-    // Set snakeBlock to snake head.
-    snakeBlock.w = gridSize;
-    snakeBlock.h = gridSize;
-    snakeBlock.x = snake.body[0].x;
-    snakeBlock.y = snake.body[0].y;
-
-    // Render Snake Head
-    SDL_RenderFillRect(sdl_renderer, &snakeBlock);
-
-    // Draw rest of the body.
-    for (int i = 0; i < snake.body.size(); i++)
-    {
-        snakeBlock.x = snake.body[i].x;
-        snakeBlock.y = snake.body[i].y;
-        // Render each part of the body.
-        SDL_RenderFillRect(sdl_renderer, &snakeBlock);
+    for(int i = 0; i < renderQueue.size(); i++){
+        renderQueue[i]->Draw(sdl_renderer);
     }
-    
-    // Draw Score
 
     
     // Update the screen

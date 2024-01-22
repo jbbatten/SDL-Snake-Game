@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/SnakeGame.dir/src/main.cpp.o CMakeFiles/SnakeGame.dir/src/Screen.cpp.o CMakeFiles/SnakeGame.dir/src/Snake.cpp.o -o SnakeGame  -Wl,-rpath,/home/jamiebatten/Dev/cpp/SnakeGame/build/lib/SDL lib/SDL/libSDL3.so.0.0.0 

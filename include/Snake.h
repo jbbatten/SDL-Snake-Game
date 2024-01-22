@@ -1,6 +1,7 @@
-#include <vector>
-#include <SDL3/SDL.h>
+
 #include <deque>
+#include "IDrawable.h"
+#include "GameSettings.h"
 
 enum class SnakeDirection{
     UP = 1,
@@ -17,18 +18,19 @@ enum class Collision{
     NoCollision = 4
 };
 
-class Snake
+class Snake : public IDrawable
 {
 public:
-    Snake(SDL_Point _startingPos, int _gridSize);
+    Snake(GameSettings &gameSettings);
     void Eat();
     void Move();
     void ChangeDirection(SnakeDirection _direction);
+    void Draw(SDL_Renderer *renderer) override;
     Collision CheckCollisions(SDL_Point const &food, int screenWidth, int screenHeight);
 
     SnakeDirection direction;
     std::deque<SDL_Point> body;
 
 private:
-    int gridSize;
+    GameSettings *gameSettings;
 };

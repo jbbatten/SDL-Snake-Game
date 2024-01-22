@@ -1,20 +1,20 @@
-#include <SDL3/SDL.h>
-#include <Snake.h>
+#include <vector>
+#include "GameSettings.h"
+#include "IDrawable.h"
 
 class Screen
 {
 
 public:
-    Screen(int screenWidth, int screenHeight, int gridSize);
+    Screen(GameSettings &gameSettings);
     ~Screen();
 
-    void Render(SDL_Point const &food, Snake const &snake);
+    void Render();
+    
+    std::vector<IDrawable*> renderQueue;
 
 private:
     SDL_Window *sdl_window;
     SDL_Renderer *sdl_renderer;
-
-    const int screenWidth;
-    const int screenHeight;
-    const int gridSize;
+    GameSettings *gameSettings;
 };

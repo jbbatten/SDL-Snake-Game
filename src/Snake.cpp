@@ -1,11 +1,11 @@
-#include <Snake.h>
 #include <iostream>
-#include <sdl_utility.h>
+#include "Snake.h"
+#include "sdl_utility.h"
 
-Snake::Snake(SDL_Point _startingPos, int _gridSize)
-    : gridSize(_gridSize)
+Snake::Snake(GameSettings &gameSettings)
+    :gameSettings(&gameSettings)
 {
-    body.push_front(_startingPos);
+    body.push_back(gameSettings.STARTING_POS);
 }
 
 void Snake::Eat()
@@ -21,6 +21,7 @@ void Snake::ChangeDirection(SnakeDirection _direction)
 
 void Snake::Move()
 {
+
     // When the body has more than 1 part run this loop to move all elements up.
     if (body.size() > 1)
     {
@@ -36,18 +37,18 @@ void Snake::Move()
     switch (direction)
     {
     case SnakeDirection::UP:
-        body[0].y -= gridSize;
+        body[0].y -= gameSettings->GRID_SIZE;
         break;
     case SnakeDirection::DOWN:
-        body[0].y += gridSize;
+        body[0].y += gameSettings->GRID_SIZE;
         break;
 
     case SnakeDirection::LEFT:
-        body[0].x -= gridSize;
+        body[0].x -= gameSettings->GRID_SIZE;
         break;
 
     case SnakeDirection::RIGHT:
-        body[0].x += gridSize;
+        body[0].x += gameSettings->GRID_SIZE;
         break;
 
     default:
@@ -76,4 +77,30 @@ Collision Snake::CheckCollisions(SDL_Point const &food, int screenWidth, int scr
     }
 
     return Collision::NoCollision;
+}
+
+void Snake::Draw(SDL_Renderer *renderer)
+{
+    // Draw Snake
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    // Set size of Snake
+    SDL_FRect snakeBlock;
+
+    // Set snakeBlock to snake head.
+    snakeBlock.w = gameSettings->GRID_SIZE;
+    snakeBlock.h = gameSettings->GRID_SIZE;
+    snakeBlock.x = body[0].x;
+    snakeBlock.y = body[0].y;
+
+    // Render Snake Head
+    SDL_RenderFillRect(renderer, &snakeBlock);
+
+    // Draw rest of the body.
+    for (int i = 0; i < body.size(); i++)
+    {
+        snakeBlock.x = body[i].x;
+        snakeBlock.y = body[i].y;
+        // Render each part of the body.
+        SDL_RenderFillRect(renderer, &snakeBlock);
+    }
 }
