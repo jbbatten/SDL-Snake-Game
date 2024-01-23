@@ -1,8 +1,0 @@
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/CMakeFiles/SnakeGame.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/lib/SDL/CMakeFiles/SDL3-shared.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/lib/SDL/CMakeFiles/SDL3_test.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/lib/SDL/CMakeFiles/uninstall.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/lib/SDL/CMakeFiles/edit_cache.dir
-/home/jamiebatten/Dev/cpp/SnakeGame/cmake-build-debug/lib/SDL/CMakeFiles/rebuild_cache.dir
