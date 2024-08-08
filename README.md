@@ -1,3 +1,3 @@
 # Snake Game
 
-A basic snake game created using SDL.
+A basic snake game made using SDL. 
