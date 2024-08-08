@@ -49,7 +49,6 @@ include/divisible/*
 
 build/**/*
 
-lib/*
 bin/*
 test/test_runner
 
@@ -86,3 +85,5 @@ test/test_runner
 *.exe
 *.out
 *.app
+
+.vscode/*
